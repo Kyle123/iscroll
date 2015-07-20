@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 
 <title>iScroll demo: infinite scrolling</title>
-
-<script type="text/javascript" src="../../build/iscroll-infinite.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../../dist/iscroll-infinite-min.js"></script>
 
 <script type="text/javascript">
 /******************************************************************************
@@ -62,18 +62,25 @@ function loaded () {
 	myScroll = new IScroll('#wrapper', {
 		mouseWheel: true,
 		infiniteElements: '#scroller .row',
-		//infiniteLimit: 2000,
+		infiniteLimit: 2000,
 		dataset: requestData,
 		dataFiller: updateContent,
-		cacheSize: 1000
+		cacheSize: 1000,
+    	scrollbars: true,
+    	interactiveScrollbars: true
 	});
 }
 
 function requestData (start, count) {
-	ajax('dataset.php?start=' + +start + '&count=' + +count, {
+	ajax('http://localhost:40000/Documents/test?start=' + +start + '&end=' + +count, {
 		callback: function (data) {
-			data = JSON.parse(data);
-			myScroll.updateCache(start, data);
+			var d = [];
+			var data = JSON.parse(data);
+			for(var i=0;i<data.length;i++) {
+				d.push(data[i].DOCFileName.trim());
+			}
+			//data = JSON.parse(data);
+			myScroll.updateCache(start, d);
 		}
 	});
 }

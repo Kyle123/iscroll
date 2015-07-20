@@ -14,7 +14,7 @@ var releases = {
 			'default/handleEvent.js'
 		]
 	},
-
+/*
 	iscroll: {
 		files: [
 			'indicator/_initIndicators.js',
@@ -54,17 +54,19 @@ var releases = {
 		],
 		postProcessing: [ 'zoom/build.json', 'indicator/build.json', 'wheel/build.json', 'snap/build.json', 'keys/build.json' ]
 	},
-
+*/
 	infinite: {
 		files: [
+			'indicator/_initIndicators.js',
 			'wheel/wheel.js',
 			'snap/snap.js',
 			'keys/keys.js',
 			'probe/_animate.js',
 			'infinite/infinite.js',
 			'default/handleEvent.js',
+			'indicator/indicator.js'
 		],
-		postProcessing: [ 'wheel/build.json', 'snap/build.json', 'keys/build.json', 'infinite/build.json', 'probe/build.json' ]
+		postProcessing: [ 'indicator/build.json', 'wheel/build.json', 'snap/build.json', 'keys/build.json', 'infinite/build.json', 'probe/build.json' ]
 	}
 };
 
